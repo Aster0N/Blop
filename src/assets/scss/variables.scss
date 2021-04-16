@@ -1,0 +1,23 @@
+// colors
+$primary-color: #709CFF;
+$secondary-color: #FF8585;
+$dark-color: #3758A3;
+$light-color: #E8E0FF;
+
+// transition
+$buttonTransition: all .2s ease-in;
+
+// fonts
+@mixin font($fontFamily, $fontSize, $fontWight, $fontColor) {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    font-weight: $fontWight;
+    color: $fontColor;
+}
+// position
+@mixin position($justify-content, $align-items) {
+    display: flex;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
