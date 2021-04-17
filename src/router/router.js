@@ -7,7 +7,7 @@ import LoginPage from '../pages/_LoginPage'
 import VehiclesPage from '../pages/_VehiclesPage'
 import RentPage from '../pages/_RentPage'
 import CompanyPage from '../pages/_CompanyPage'
-import ContactasPage from '../pages/_ContactasPage'
+import ContactasPage from '../pages/_ContactsPage'
 
 
 import NotFound from '../pages/404'
