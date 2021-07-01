@@ -112,7 +112,7 @@ export default {
   cursor: none;
 }
 .menu-container {
-  @include position(space-between, center);
+  @include position(space-between, center, "");
   padding: 20px;
   .logo {
     display: inline-block;
@@ -123,7 +123,7 @@ export default {
     background-color: rgba(0, 0, 0, 0.14);
     width: 130px;
     height: 130px;
-    @include position(center, center);
+    @include position(center, center, "");
   }
   .tilt-anim-wrap {
     box-sizing: border-box;

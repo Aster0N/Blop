@@ -41,7 +41,7 @@ export default {
       move_left_coef: 1,
       onResize() {
         console.log(this.move_coef);
-        
+
         // todo a media queries with js down below (нужно увеличивать значение переменной move_left_coef)
         // if (window.innerWidth <= 1820) {
         //   this.move_coef = 14;
@@ -63,7 +63,8 @@ export default {
       $(".menu-wrapper").on("mousemove", function (e) {
         var mouseX = e.pageX,
           offset =
-            (mouseX / usageWidth) * slidesWidth - mouseX / moving_coefficient / move_to_left;
+            (mouseX / usageWidth) * slidesWidth -
+            mouseX / moving_coefficient / move_to_left;
         $images.css({
           "-webkit-transform": "translate3d(" + -offset + "px,0,0)",
           transform: "translate3d(" + -offset + "px,0,0)",
@@ -84,13 +85,13 @@ export default {
 <style scoped lang="scss">
 .menu-container {
   height: 100vh;
-  @include position(flex-start, center);
+  @include position(flex-start, center, "");
   overflow: hidden;
 }
 .menu-wrapper {
   width: 50%;
   height: 100%;
-  @include position("", center);
+  @include position("", center, "");
 
   .menu-list {
     box-sizing: border-box;
@@ -104,7 +105,7 @@ export default {
       transition: transform 0.1s ease;
     }
     .list-link {
-      @include position(center, center);
+      @include position(center, center, "");
       width: 100%;
       height: 100%;
       padding: 0 200px;

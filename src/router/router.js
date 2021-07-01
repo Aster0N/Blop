@@ -36,9 +36,9 @@ export default new VueRouter({
                     component: LoginPage,
                 },
                 {
-                  path: 'vehicles',
-                  name: 'vehicles',
-                  component: VehiclesPage,
+                    path: 'vehicles',
+                    name: 'vehicles',
+                    component: VehiclesPage,
                 },
                 {
                     path: 'rent',
