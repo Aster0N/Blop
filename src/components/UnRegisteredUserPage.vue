@@ -9,8 +9,44 @@
           over the world.
         </div>
       </div>
-      <button class="info-button-ur" id="getStartedBtn">Get started -></button>
-      <!-- add arrow -->
+      <router-link
+        class="get-started-link-ur"
+        id="getStartedBtn"
+        :to="{ name: 'vehicles' }"
+        >Get started
+        <span class="btn-arrow-ur" id="btn-arrow">
+          <svg
+            width="16"
+            height="18"
+            viewBox="0 0 16 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="btn-arrow">
+              <rect
+                id="Rectangle 45"
+                x="1.43138"
+                y="0.809814"
+                width="16"
+                height="2"
+                rx="1"
+                transform="rotate(30 1.43138 0.809814)"
+                fill="white"
+              />
+              <rect
+                id="Rectangle 46"
+                x="0.431366"
+                y="15.8098"
+                width="16"
+                height="2"
+                rx="1"
+                transform="rotate(-30 0.431366 15.8098)"
+                fill="white"
+              />
+            </g>
+          </svg>
+        </span>
+      </router-link>
     </div>
     <div class="menu-cursor-pc" id="cursor"></div>
   </div>
@@ -28,12 +64,13 @@ export default {
     return {};
   },
   mounted() {
-    let wrapperPage = document.getElementById("unregistered-user-page");
-    let menuLink = document.getElementById("wrapDecorMenu"); // from MainHeader
-    let mainHeaderLogo = document.getElementById("mainHeaderLogo");
-    let mouseCursor = document.getElementById("cursor");
-    let startBtn = document.getElementById("getStartedBtn");
-    mouseCursor.style.display = "none"; // to hide cursor in start position (left top page corner)
+    const wrapperPage = document.getElementById("unregistered-user-page");
+    const menuLink = document.getElementById("wrapDecorMenu"); // from MainHeader
+    const mainHeaderLogo = document.getElementById("mainHeaderLogo");
+    const mouseCursor = document.getElementById("cursor");
+    const startBtn = document.getElementById("getStartedBtn");
+    const startBtnArrow = document.getElementById("btn-arrow");
+    mouseCursor.style.display = "none";
     // turn on animation
     function animateCursor(e, element) {
       if (e.target == element) {
@@ -46,22 +83,34 @@ export default {
       mouseCursor.classList.remove("cursorActiveColor");
       mouseCursor.classList.remove("cursor-filter");
     }
+    function animateArrow() {
+      startBtnArrow.style.cssText = `
+        right: 100px;
+        transform: scale(1.4);
+      `;
+    }
+    function offAnimationArrow() {
+      startBtnArrow.style.cssText = `
+        right: 130px;
+        transform: scale(1.0);
+        `;
+    }
+
     function cursor(e) {
       mouseCursor.style.display = "inline";
-      if (e.pageX < window.innerWidth && e.pageY < window.innerHeight) {
-        mouseCursor.style.top = e.pageY - 5 + "px";
-        mouseCursor.style.left = e.pageX - 5 + "px";
-      } else {
-        mouseCursor.style.display = "none";
-      }
+      mouseCursor.style.top = e.pageY - mouseCursor.offsetHeight * 0.8 + "px";
+      mouseCursor.style.left = e.pageX - mouseCursor.offsetWidth * 0.8 + "px";
       animateCursor(e, menuLink);
       animateCursor(e, mainHeaderLogo);
     }
-
     startBtn.addEventListener("mousemove", (e) => {
       animateCursor(e, startBtn);
+      animateArrow();
     });
-    startBtn.addEventListener("mouseleave", () => offAnimationCursor());
+    startBtn.addEventListener("mouseleave", () => {
+      offAnimationCursor();
+      offAnimationArrow();
+    });
     wrapperPage.addEventListener("mousemove", (e) => cursor(e));
     menuLink.addEventListener("mouseleave", () => offAnimationCursor());
     mainHeaderLogo.addEventListener("mouseleave", () => offAnimationCursor());
@@ -75,7 +124,9 @@ export default {
   height: 100vh;
   background: url("https://i.ibb.co/FmX3zb9/f1.jpg") no-repeat fixed center;
 }
+
 .menu-cursor-pc {
+  position: absolute;
   height: 15px;
   width: 15px;
   transition: border, transform 0.2s cubic-bezier(0.59, -0.67, 0.6, 1.67);
@@ -84,11 +135,11 @@ export default {
   border: 2px solid #052730;
   background-color: transparent;
   pointer-events: none;
-  position: absolute;
   transform: translate(-20%, -20%);
   z-index: 999;
   @include position(center, center, "");
 }
+
 .menu-cursor-pc.cursor-filter {
   backdrop-filter: hue-rotate(120deg);
 }
@@ -114,20 +165,30 @@ export default {
       @include font("Inter", 24px, 200, #fff);
     }
   }
-  .info-button-ur {
+  .get-started-link-ur {
     display: block;
-    max-width: 550px;
+    position: relative;
+    border: none;
+    max-width: 250px;
     padding: 25px 125px;
     background-color: rgba($primary-color, 0.4);
-    border: none;
-    @include position(center, center, "");
-    @include font("Jost", 30px, 400, #fff);
     letter-spacing: 2px;
+    text-decoration: none;
     transition: $buttonTransition;
+    text-align: center;
+    @include font("Jost", 30px, 400, #fff);
 
+    &,
     &:hover {
       cursor: none;
       background-color: rgba($primary-color, 0.5);
+    }
+
+    .btn-arrow-ur {
+      display: inline-block;
+      position: absolute;
+      right: 130px;
+      transition: all ease 0.5s;
     }
   }
 }

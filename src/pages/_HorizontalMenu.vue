@@ -52,16 +52,16 @@ export default {
     };
   },
   mounted() {
-    var moving_coefficient = this.move_coef;
-    var move_to_left = this.move_left_coef;
+    let moving_coefficient = this.move_coef;
+    let move_to_left = this.move_left_coef;
     $(document).ready(function () {
-      var usageWidth = $(".menu-wrapper").width(),
+      let usageWidth = $(".menu-wrapper").width(),
         slidesWidth = $("#menu-content").width(),
         // rangeX = slidesWidth - usageWidth,
         $images = $(".list-item");
 
       $(".menu-wrapper").on("mousemove", function (e) {
-        var mouseX = e.pageX,
+        let mouseX = e.pageX,
           offset =
             (mouseX / usageWidth) * slidesWidth -
             mouseX / moving_coefficient / move_to_left;

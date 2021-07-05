@@ -2,7 +2,7 @@
     <div class="page contacts-page">
         <router-link
             :to="{name: 'menu'}"
-        >назад</router-link>
+        >menu</router-link>
         contacts page
     </div>
 </template>

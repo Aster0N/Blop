@@ -2,7 +2,7 @@
     <div class="page login-page">
         <router-link
             :to="{name: 'menu'}"
-        >назад</router-link>
+        >menu</router-link>
         login page
     </div>
 </template>

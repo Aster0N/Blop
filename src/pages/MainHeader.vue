@@ -84,9 +84,9 @@ export default {
 
   // tilt animation
   mounted() {
-    let tiltContainer = document.querySelector(".tilt-anim-wrap");
-    let decorBlock = document.querySelector(".decor-block");
-    let menuSpan = document.querySelector(".menu-word-span");
+    const tiltContainer = document.querySelector(".tilt-anim-wrap");
+    const decorBlock = document.querySelector(".decor-block");
+    const menuSpan = document.querySelector(".menu-word-span");
 
     tiltContainer.addEventListener("mousemove", (e) => {
       let xAxis = (window.innerWidth - e.pageX) / 7 - 15;

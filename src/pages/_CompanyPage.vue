@@ -2,7 +2,7 @@
     <div class="page company-page">
         <router-link
             :to="{name: 'menu'}"
-        >назад</router-link>
+        >menu</router-link>
         company page
     </div>
 </template>

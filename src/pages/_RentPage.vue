@@ -2,7 +2,7 @@
     <div class="page rent-page">
         <router-link
             :to="{name: 'menu'}"
-        >назад</router-link>
+        >menu</router-link>
         rent page
     </div>
 </template>
