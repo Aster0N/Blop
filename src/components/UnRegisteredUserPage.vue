@@ -172,11 +172,11 @@ export default {
     max-width: 250px;
     padding: 25px 125px;
     background-color: rgba($primary-color, 0.4);
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-decoration: none;
     transition: $buttonTransition;
     text-align: center;
-    @include font("Jost", 30px, 400, #fff);
+    @include font("Jost", 30px, 800, #fff);
 
     &,
     &:hover {
