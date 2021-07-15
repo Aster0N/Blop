@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: '/Blop/',
+    // publicPath: '/Blop/',
     css: {
         loaderOptions: {
             // @import "@/assets/scss/styles.scss";
