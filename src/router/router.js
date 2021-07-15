@@ -10,7 +10,7 @@ import CompanyPage from '../pages/_CompanyPage'
 import ContactasPage from '../pages/_ContactsPage'
 
 
-import NotFound from '../pages/404'
+// import NotFound from '../pages/404'
 
 export default new VueRouter({
     mode: 'history',
@@ -58,10 +58,10 @@ export default new VueRouter({
             ]
         },
         // 404 page
-        {
-            path: '*',
-            name: 'notFound',
-            component: NotFound,
-        }
+        // {
+        //     path: '*',
+        //     name: 'notFound',
+        //     component: NotFound,
+        // }
     ]
 })
