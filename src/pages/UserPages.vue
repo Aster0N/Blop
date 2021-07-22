@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import RegisteredUserPage from './RegisteredUserPage'
-import UnRegisteredUserPage from './UnRegisteredUserPage'
+import RegisteredUserPage from '../components/RegisteredUserPage'
+import UnRegisteredUserPage from '../components/UnRegisteredUserPage'
 // ! fake data
 // TODO import fake data file here and include the value of 'isRegistered: true/false' into the data function
 

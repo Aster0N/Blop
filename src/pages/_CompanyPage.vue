@@ -1,6 +1,7 @@
 <template>
     <div class="page company-page">
         <router-link
+            class="to-menu"
             :to="{name: 'menu'}"
         >menu</router-link>
         company page

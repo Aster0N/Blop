@@ -17,12 +17,12 @@ module.exports = {
                 use: ['file-loader']
             },
         ],
-        postLoaders: [
-            {
-                include: path.resolve(__dirname, 'node_modules/pixi.js'),
-                loader: 'ify'
-            }
-        ]
+        // postLoaders: [
+        //     {
+        //         include: path.resolve(__dirname, 'node_modules/pixi.js'),
+        //         loader: 'ify'
+        //     }
+        // ]
     },
     // plugins: [
     //     new webpack.ProvidePlugin({

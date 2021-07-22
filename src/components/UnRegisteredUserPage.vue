@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import MainHeader from "../pages/MainHeader.vue";
+import MainHeader from "./MainHeader.vue";
 
 export default {
   name: "unregistered-user",
