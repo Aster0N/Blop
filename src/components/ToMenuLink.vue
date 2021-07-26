@@ -10,8 +10,6 @@ export default {};
 
 <style lang="scss" scoped>
 .to-menu-link {
-	position: absolute;
-	top: 0;
-	left: 50px;
+	margin: 0 20px 0 0;
 }
 </style>

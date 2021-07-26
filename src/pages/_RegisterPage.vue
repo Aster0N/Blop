@@ -1,32 +1,139 @@
 <template>
 	<div class="page register-page">
-		<router-link class="reg-back-to-log-link" :to="{ name: 'login' }"
-			>back to login</router-link
-		>
-		<to-menu-link> </to-menu-link>
-		<h1>register page</h1>
+		<log-reg-info-page :lr_prop="logRegContent"></log-reg-info-page>
+		<!-- <div class="r-wrapper-container">
+			<form class="r-container-body" @submit.prevent="">
+				<div class="r-container-title">Register</div>
+				<div class="r-body-areas">
+					<div class="r-area-email" id="registerEmail" @focusin="onFocus">
+						<label for="area-email-input" class="area-label">
+							<span class="area-label-span">Email</span>
+						</label>
+						<input
+							type="email"
+							class="area-input"
+							id="area-email-input"
+							required
+							@blur="onBlur"
+						/>
+					</div>
+					<div
+						class="r-area-password"
+						id="registerPassword"
+						@focusin="onFocus"
+					>
+						<label for="area-pass-input" class="area-label">
+							<span class="area-label-span">Password</span>
+						</label>
+						<input
+							type="password"
+							class="area-input"
+							id="area-pass-input"
+							required
+							@blur="onBlur"
+						/>
+					</div>
+				</div>
+				<div class="r-body-links">
+					<button class="sign-up-btn" id="signUp" type="submit">
+						Sign Up
+					</button>
+					<router-link class="login-page-link" :to="{ name: 'login' }">
+						Back to login
+					</router-link>
+				</div>
+			</form>
+		</div> -->
 	</div>
 </template>
 
 <script>
-import ToMenuLink from "../components/ToMenuLink.vue";
+import LogRegInfoPage from "../components/LoginRegisterInfoPage.vue";
 export default {
 	components: {
-		ToMenuLink,
+		LogRegInfoPage,
 	},
 	data() {
-		return {};
+		return {
+			logRegContent: {
+				title: "Register",
+				form_title_class: ["form-title", "form-r-title"],
+				areas: [
+					{
+						area_key: "ID_USERNAME-REGISTER",
+						name: "Username",
+						wrap_class: "area-username",
+						wrap_id: "username",
+						// label tag
+						label_for: "area-username-input",
+						label_class: "area-label",
+						// label > span tag
+						label_span_class: "area-label-span",
+						//input tag
+						input_type: "text",
+						input_class: "area-input",
+						input_id: "area-username-input",
+					},
+					{
+						area_key: "ID_EMAIL-REGISTER",
+						name: "Email",
+						wrap_class: "area-email",
+						wrap_id: "registerEmail",
+						// label tag
+						label_for: "area-email-input",
+						label_class: "area-label",
+						// label > span tag
+						label_span_class: "area-label-span",
+						//input tag
+						input_type: "email",
+						input_class: "area-input",
+						input_id: "area-email-input",
+					},
+					{
+						area_key: "ID_PASSWORD-REGISTER",
+						name: "Password",
+						wrap_class: "area-password",
+						wrap_id: "registerPassword",
+						// label tag
+						label_for: "area-pass-input",
+						label_class: "area-label",
+						// label > span tag
+						label_span_class: "area-label-span",
+						// input tag
+						input_type: "password",
+						input_class: "area-input",
+						input_id: "area-pass-input",
+					},
+					{
+						area_key: "ID_PASSWORD-CONFIRMATION-REGISTER",
+						name: "Password confirmation",
+						wrap_class: "area-password-confirm",
+						wrap_id: "registerPassword-confirm",
+						// label tag
+						label_for: "area-pass-confirm-input",
+						label_class: "area-label",
+						// label > span tag
+						label_span_class: "area-label-span",
+						// input tag
+						input_type: "password",
+						input_class: "area-input",
+						input_id: "area-pass-confirm-input",
+					},
+					// Password confirmation
+				],
+				formLinks: [
+					{
+						// btn tag
+						button_key: "ID-BTN-SIGN-UP-REGISTER",
+						btn_id: "signUp",
+						user_action: "Sign Up",
+						// router to another page tag
+						rout_name_page: "login",
+						rout_text: "Login",
+					},
+				],
+			},
+		};
 	},
 };
 </script>
-
-<style lang="scss" scoped>
-.register-page {
-	border: 1px solid rgb(59, 24, 255);
-	.reg-back-to-log-link {
-		position: absolute;
-		top: 0;
-		left: 100px;
-	}
-}
-</style>

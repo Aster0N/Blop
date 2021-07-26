@@ -5,7 +5,7 @@ $dark-color: #3758A3;
 $light-color: #E8E0FF;
 
 // transition
-$buttonTransition: all 0.2s ease-in;
+$buttonTransition: all 0.2s ease;
 
 // fonts
 @mixin font($fontFamily, $fontSize, $fontWight, $fontColor) {
