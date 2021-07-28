@@ -60,7 +60,6 @@ export default {
 				form_title_class: ["form-title", "form-r-title"],
 				areas: [
 					{
-						area_key: "ID_USERNAME-REGISTER",
 						name: "Username",
 						wrap_class: "area-username",
 						wrap_id: "username",
@@ -75,7 +74,6 @@ export default {
 						input_id: "area-username-input",
 					},
 					{
-						area_key: "ID_EMAIL-REGISTER",
 						name: "Email",
 						wrap_class: "area-email",
 						wrap_id: "registerEmail",
@@ -90,7 +88,6 @@ export default {
 						input_id: "area-email-input",
 					},
 					{
-						area_key: "ID_PASSWORD-REGISTER",
 						name: "Password",
 						wrap_class: "area-password",
 						wrap_id: "registerPassword",
@@ -105,7 +102,6 @@ export default {
 						input_id: "area-pass-input",
 					},
 					{
-						area_key: "ID_PASSWORD-CONFIRMATION-REGISTER",
 						name: "Password confirmation",
 						wrap_class: "area-password-confirm",
 						wrap_id: "registerPassword-confirm",
@@ -124,7 +120,6 @@ export default {
 				formLinks: [
 					{
 						// btn tag
-						button_key: "ID-BTN-SIGN-UP-REGISTER",
 						btn_id: "signUp",
 						user_action: "Sign Up",
 						// router to another page tag

@@ -62,7 +62,6 @@ export default {
 				form_title_class: ["form-title", "form-l-title"],
 				areas: [
 					{
-						area_key: "ID_EMAIL-LOGIN",
 						name: "Email",
 						wrap_class: "area-email",
 						wrap_id: "loginEmail",
@@ -77,7 +76,6 @@ export default {
 						input_id: "area-email-input",
 					},
 					{
-						area_key: "ID_PASSWORD-LOGIN",
 						name: "Password",
 						wrap_class: "area-password",
 						wrap_id: "loginPassword",
@@ -95,7 +93,6 @@ export default {
 				formLinks: [
 					{
 						// btn tag
-						button_key: "ID-BTN-SIGN-IN-LOGIN",
 						btn_id: "signIn",
 						user_action: "Sign In",
 						// router to another page tag

@@ -7,6 +7,7 @@ import router from './router/router'
 import './assets/scss/styles.scss'
 import './assets/scss/fonts.scss'
 import 'normalize.css'
+import 'material-design-icons-iconfont'
 
 // import './assets/scss/variables.scss'
 

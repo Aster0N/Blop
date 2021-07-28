@@ -9,6 +9,8 @@ import VehiclesPage from '../pages/_VehiclesPage'
 import RentPage from '../pages/_RentPage'
 import CompanyPage from '../pages/_CompanyPage'
 import ContactasPage from '../pages/_ContactsPage'
+import FaqPage from '../pages/_Faq.vue';
+import RentDetails from '../pages/_RentDetails.vue';
 
 
 // import NotFound from '../pages/404'
@@ -60,7 +62,17 @@ export default new VueRouter({
                     path: 'contacts',
                     name: 'contacts',
                     component: ContactasPage,
-                }
+                },
+                {
+                    path: 'faq',
+                    name: 'faq',
+                    component: FaqPage,
+                },
+                {
+                    path: 'rent-details',
+                    name: 'rent-details',
+                    component: RentDetails,
+                },
             ]
         },
         // 404 page

@@ -6,8 +6,8 @@
 			</div>
 			<div
 				class="form-area"
-				:key="area.area_key"
-				v-for="area in lr_prop.areas"
+				v-for="(area, index) in lr_prop.areas"
+				:key="index"
 			>
 				<div :class="area.wrap_class" :id="area.wrap_id" @focusin="onFocus">
 					<label :for="area.label_for" :class="area.label_class">
@@ -24,8 +24,8 @@
 			</div>
 			<div
 				class="form-body-links"
-				:key="link.button_key"
-				v-for="link in lr_prop.formLinks"
+				v-for="(link, index) in lr_prop.formLinks"
+				:key="index"
 			>
 				<button class="links-btn-action" :id="link.btn_id" type="submit">
 					{{ link.user_action }}
