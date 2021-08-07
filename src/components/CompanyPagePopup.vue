@@ -8,7 +8,7 @@
 					</span>
 				</button>
 				<div class="popup-title">
-					<slot name="popup-title"></slot>
+					<slot name="popup-title" id="popup-title"></slot>
 				</div>
 				<div class="popup-text">
 					<slot name="popup-text"></slot>
@@ -105,6 +105,44 @@ export default {
 		left: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	.partners-wrapper {
+		min-width: 600px;
+
+		.partners-list {
+			margin: 0;
+			padding: 0 0 0 20px;
+			list-style-type: none;
+
+			.partners-list-item {
+				position: relative;
+				margin: 0 0 20px 0;
+				&::before {
+					content: "";
+					display: block;
+					position: absolute;
+					top: 50%;
+					left: -20px;
+					width: 3px;
+					height: 3px;
+					border-radius: 50%;
+					background-color: $secondary-color;
+					transform: translateY(-50%);
+				}
+				.partners-list-link {
+					width: 100%;
+					height: 100%;
+					text-decoration: underline;
+					color: #000;
+					transition: $buttonTransition;
+					&:hover {
+						color: rgb(0, 0, 0, 0.7);
+						text-decoration-color: $secondary-color;
+					}
+				}
+			}
+		}
 	}
 }
 </style>

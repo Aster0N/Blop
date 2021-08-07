@@ -11,6 +11,8 @@ import CompanyPage from '../pages/_CompanyPage'
 import ContactasPage from '../pages/_ContactsPage'
 import FaqPage from '../pages/_Faq.vue';
 import RentDetails from '../pages/_RentDetails.vue';
+import BecomePremium from '../pages/_BecomePremium.vue';
+import OurPartners from '../pages/_OurPartners.vue';
 
 
 // import NotFound from '../pages/404'
@@ -25,7 +27,7 @@ export default new VueRouter({
         },
         {
             path: '/menu',
-            name: 'menu-layout',
+            name: '',
             component: MenuLayout,
             children: [
                 {
@@ -72,6 +74,16 @@ export default new VueRouter({
                     path: 'rent-details',
                     name: 'rent-details',
                     component: RentDetails,
+                },
+                {
+                    path: 'become-premium',
+                    name: 'become-premium',
+                    component: BecomePremium,
+                },
+                {
+                    path: 'partners',
+                    name: 'partners',
+                    component: OurPartners,
                 },
             ]
         },

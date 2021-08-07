@@ -1,107 +1,126 @@
 <template>
 	<div class="page login-page">
-		<log-reg-info-page :lr_prop="logRegContent"></log-reg-info-page>
-		<!-- <div class="l-wrapper-container">
-			<form class="l-container-body" @submit.prevent="">
-				<div class="l-container-title">Login</div>
-				<div class="l-body-areas">
-					<div class="l-area-email" id="loginEmail" @focusin="onFocus">
-						<label for="area-email-input" class="area-label">
-							<span class="area-label-span">Email</span>
-						</label>
-						<input
-							type="email"
-							class="area-input"
-							id="area-email-input"
-							required
-							@blur="onBlur"
-						/>
-					</div>
-					<div
-						class="l-area-password"
-						id="loginPassword"
-						@focusin="onFocus"
-					>
-						<label for="area-pass-input" class="area-label">
-							<span class="area-label-span">Password</span>
-						</label>
-						<input
-							type="password"
-							class="area-input"
-							id="area-pass-input"
-							required
-							@blur="onBlur"
-						/>
-					</div>
-				</div>
-				<div class="l-body-links">
-					<button class="sign-in-btn" id="signIn" type="submit">
-						Sign In
-					</button>
-					<router-link
-						class="register-page-link"
-						:to="{ name: 'registration' }"
-					>
-						Registration
-					</router-link>
-				</div>
-			</form>
-		</div> -->
+		<log-reg-info-page @formSubmit="formSubmit">
+			<template v-slot:form-title>
+				<div class="form-title form-l-title">Login</div>
+			</template>
+			<template v-slot:form-areas>
+				<form-area
+					:area="loginContent.content_email"
+					v-model.trim="form.email"
+					:class="{
+						invalid:
+							($v.form.email.$dirty && !$v.form.email.required) ||
+							($v.form.email.$dirty && !$v.form.email.email),
+					}"
+				>
+					<template v-slot:invalid-form-warning>
+						<span
+							v-if="$v.form.email.$dirty && !$v.form.email.required"
+							class="invalid-warning-message"
+							>The email field is required</span
+						>
+						<span
+							v-if="$v.form.email.$dirty && !$v.form.email.email"
+							class="invalid-warning-message"
+							>Enter a valid email</span
+						>
+					</template>
+				</form-area>
+				<form-area
+					:area="loginContent.content_password"
+					v-model.trim="form.password"
+					:class="{
+						invalid:
+							($v.form.password.$dirty && !$v.form.password.required) ||
+							($v.form.password.$dirty && !$v.form.password.minLength),
+					}"
+				>
+					<template v-slot:invalid-form-warning>
+						<span
+							v-if="
+								$v.form.password.$dirty && !$v.form.password.required
+							"
+							class="invalid-warning-message"
+							>Enter the password</span
+						>
+						<span
+							v-if="
+								$v.form.password.$dirty && !$v.form.password.minLength
+							"
+							class="invalid-warning-message"
+							>Field must have at least
+							{{ $v.form.password.$params.minLength.min }}
+							characters</span
+						>
+					</template>
+				</form-area>
+			</template>
+			<template v-slot:form-links>
+				<button class="links-btn-action" id="signIn" type="submit">
+					Sign In
+				</button>
+				<router-link class="rout-to-lr" :to="{ name: 'registration' }">
+					Registration
+				</router-link>
+			</template>
+		</log-reg-info-page>
 	</div>
 </template>
 <script>
+import { email, required, minLength } from "vuelidate/lib/validators";
 import LogRegInfoPage from "../components/LoginRegisterInfoPage.vue";
+import FormArea from "../components/FormArea.vue";
+
 export default {
 	components: {
 		LogRegInfoPage,
+		FormArea,
+	},
+	validations: {
+		form: {
+			email: { email, required },
+			password: { required, minLength: minLength(5) },
+		},
 	},
 	data() {
 		return {
-			logRegContent: {
-				title: "Login",
-				form_title_class: ["form-title", "form-l-title"],
-				areas: [
-					{
-						name: "Email",
-						wrap_class: "area-email",
-						wrap_id: "loginEmail",
-						// label tag
-						label_for: "area-email-input",
-						label_class: "area-label",
-						// label > span tag
-						label_span_class: "area-label-span",
-						//input tag
-						input_type: "email",
-						input_class: "area-input",
-						input_id: "area-email-input",
-					},
-					{
-						name: "Password",
-						wrap_class: "area-password",
-						wrap_id: "loginPassword",
-						// label tag
-						label_for: "area-pass-input",
-						label_class: "area-label",
-						// label > span tag
-						label_span_class: "area-label-span",
-						// input tag
-						input_type: "password",
-						input_class: "area-input",
-						input_id: "area-pass-input",
-					},
-				],
-				formLinks: [
-					{
-						// btn tag
-						btn_id: "signIn",
-						user_action: "Sign In",
-						// router to another page tag
-						rout_name_page: "registration",
-						rout_text: "Registration",
-					},
-				],
+			loginContent: {
+				content_email: {
+					input_id: "area-email-input",
+					input_type: "email",
+					label_text: "Email",
+				},
+				content_password: {
+					input_id: "area-pass-input",
+					input_type: "password",
+					label_text: "Password",
+				},
+			},
+			form: {
+				email: "",
+				password: "",
 			},
 		};
 	},
+	methods: {
+		formSubmit() {
+			if (this.$v.$invalid) {
+				this.$v.$touch();
+				return;
+			}
+			this.$router.push("/");
+		},
+	},
 };
 </script>
+
+<style lang="scss" scoped>
+.invalid-warning-message {
+	display: inline-block;
+	@include font("Inter", 14px, 400, #d61c1c);
+	cursor: default;
+	pointer-events: none;
+	user-select: none;
+}
+</style>

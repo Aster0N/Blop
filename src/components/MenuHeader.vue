@@ -1,13 +1,15 @@
 <template>
 	<div class="menu-header">
-		<div class="layout-link">
-			<router-link class="layout-home" :to="{ name: 'user-pages' }"
+		<div class="layout-links">
+			<router-link
+				class="menu-header-link layout-to-home"
+				:to="{ name: 'user-pages' }"
 				>home
 			</router-link>
 		</div>
 
 		<div
-			class="layout-link layout-menu"
+			class="layout-links layout-menu"
 			v-if="
 				this.$route.name == 'contacts' ||
 				this.$route.name == 'vehicles' ||
@@ -19,14 +21,21 @@
 			<to-menu-link></to-menu-link>
 		</div>
 
-		<div
-			class="layout-link layout-reg-links"
-			v-else-if="this.$route.name == 'registration'"
-		>
+		<div class="layout-links" v-else-if="this.$route.name == 'registration'">
 			<to-menu-link></to-menu-link>
-			<router-link class="layout-login" :to="{ name: 'login' }"
+			<router-link
+				class="menu-header-link layout-to-login"
+				:to="{ name: 'login' }"
 				>login</router-link
 			>
+		</div>
+		<div class="layout-links" v-if="this.$route.name == 'become-premium'">
+			<to-menu-link></to-menu-link>
+			<router-link
+				class="menu-header-link layout-to-company"
+				:to="{ name: 'company' }"
+				>our company
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -43,11 +52,24 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.menu-header,
-.layout-reg-links {
+.menu-header {
 	@include position(flex-start, center, "");
-}
-.layout-link {
-	margin: 0 20px 0 0;
+	height: 50px;
+	background-color: #2c3c63;
+	.layout-links {
+		height: 100%;
+		@include position(flex-start, center, "");
+		.menu-header-link {
+			height: 100%;
+			padding: 0 20px;
+			text-decoration: none;
+			transition: $buttonTransition;
+			@include font("Jost", 20px, 400, #fff);
+			@include position(center, center, "");
+			&:hover {
+				background-color: $primary-color;
+			}
+		}
+	}
 }
 </style>
