@@ -98,12 +98,21 @@ export default {
 		cursor: pointer;
 		margin: 0 0 10px 0;
 		padding: 5px;
+		position: relative;
 		.area-label-span {
 			transition: color ease 0.3s;
 			@include font("Inter", 18px, bold, #fff);
 		}
 		.area-label-span.label_focus {
 			color: #000;
+		}
+		&::after {
+			content: "*";
+			color: #fff;
+			position: absolute;
+			right: -5px;
+			top: 0;
+			font-size: 1.2em;
 		}
 	}
 }

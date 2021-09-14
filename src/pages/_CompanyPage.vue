@@ -2,6 +2,7 @@
 	<div class="page company-page">
 		<div class="company-page-wrapper">
 			<div class="company-title">Our company</div>
+
 			<div class="company-info">
 				<div class="info-text">
 					<ul class="info-text-list">
@@ -14,12 +15,12 @@
 							Europe.
 						</li>
 						<li class="info-item">
-							Our international network has more than 1,500 rental
+							Our international network has more than 1500 rental
 							stations, widely distributed throughout Europe.
 						</li>
 						<li class="info-item">
 							We have more than 20 types of vehicles, which can be rented
-							by any adult.
+							by any customer.
 						</li>
 					</ul>
 				</div>
@@ -35,6 +36,69 @@
 							:to="{ name: 'rent-details' }"
 							>Rent details</router-link
 						>
+					</div>
+				</div>
+
+				<div class="why-us">
+					<div class="why-us-title">Why us</div>
+					<div class="slider">
+						<div class="slider__item">
+							<div class="slider__content slider__content-1">
+								<div class="content-image"></div>
+								<div class="content-description">
+									<div class="description-title">Unique</div>
+									<div class="description-text">
+										We present our customers with a unique choice of
+										transportation.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="slider__item">
+							<div class="slider__content slider__content-2">
+								<div class="content-image"></div>
+								<div class="content-description">
+									<div class="description-title">Fast</div>
+									<div class="description-text">
+										Our staff will quickly respond to your call /
+										message no matter what your region.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="slider__item">
+							<div class="slider__content slider__content-3">
+								<div class="content-image"></div>
+								<div class="content-description">
+									<div class="description-title">Helpful services</div>
+									<div class="description-text">
+										You have the opportunity to try out any vehicle
+										for free for 20 minutes.
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="slider__item">
+							<div class="slider__content slider__content-4">
+								<div class="content-image"></div>
+								<div class="content-description">
+									<div class="description-title">Customer</div>
+									<div class="description-text">
+										We care about our customers, so the inspection of
+										the vehicle and the time of approach to the car -
+										free of charge.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="slider-controls">
+						<button class="slider-btn slider-prev-btn">
+							<img src="../assets/img/arrow_prev_wh.svg" alt="prev" />
+						</button>
+						<button class="slider-btn slider-next-btn">
+							<img src="../assets/img/arrow_next_wh.svg" alt="next" />
+						</button>
 					</div>
 				</div>
 			</div>
@@ -113,6 +177,8 @@
 </template>
 <script>
 import Popup from "../components/CompanyPagePopup.vue";
+import $ from "jquery";
+import "../assets/js/slick.min.js";
 
 export default {
 	components: {
@@ -121,6 +187,7 @@ export default {
 	data() {
 		return {
 			popupOpenTrigger: false,
+			isFaqPageOpen: false,
 		};
 	},
 	methods: {
@@ -130,6 +197,64 @@ export default {
 		closePopup() {
 			this.popupOpenTrigger = false;
 		},
+	},
+	mounted() {
+		$(".slider").slick({
+			arrows: true,
+			autoplay: true,
+			pauseOnHover: true,
+			pauseOnDotsHover: true,
+			touchMove: false,
+			mobileFirst: false,
+			easing: "ease",
+			autoplaySpeed: 4000,
+			touchThreeshold: 3, // for mobile
+		});
+		$(".slider-prev-btn").click(function () {
+			$(".slider").slick("slickPrev");
+		});
+		$(".slider-next-btn").click(function () {
+			$(".slider").slick("slickNext");
+		});
+
+		let slickList = document.querySelector(".slick-list");
+		let slickTrack = document.querySelector(".slick-track");
+		let slickArrows = document.querySelectorAll(".slick-arrow");
+
+		slickList.style.cssText = `
+			box-sizing: border-box;
+			overflow: hidden;
+			width: 1200px;
+			margin: 0 auto;
+			padding: 50px;
+			background-color: #FFFBF4;
+		`;
+		slickTrack.style.cssText = `
+			display: flex;
+		`;
+		slickTrack.addEventListener("mouseenter", () => {
+			document.body.style.cursor = "grab";
+		});
+		slickTrack.addEventListener("mouseleave", () => {
+			document.body.style.cursor = "default";
+		});
+		slickTrack.addEventListener("mousedown", () => {
+			document.body.style.cursor = "grabbing";
+		});
+		slickTrack.addEventListener("mouseup", () => {
+			document.body.style.cursor = "grab";
+		});
+		slickArrows.forEach((el) => {
+			el.style.cssText = `
+				font-size: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				pointer-events: none;
+				visibility: hidden;
+				display: none;
+			`;
+		});
 	},
 };
 </script>
@@ -147,6 +272,7 @@ export default {
 			padding: 0 40px;
 			margin: 0 0 30px 0;
 		}
+
 		.company-info {
 			flex: 1 1 auto;
 			position: relative;
@@ -179,9 +305,8 @@ export default {
 					}
 				}
 			}
-
 			.info-blocks {
-				padding: 80px;
+				padding: 100px;
 				@include position(flex-start, center, "");
 				flex-wrap: wrap;
 				.info-block {
@@ -229,7 +354,7 @@ export default {
 			margin: 0;
 			color: #fff;
 			padding: 40px 0 80px 0;
-			background-color: #395a69;
+			background-color: $button-color;
 			.company-footer-title {
 				text-align: center;
 				padding: 0 0 20px 0;
@@ -266,4 +391,71 @@ export default {
 		}
 	}
 }
+
+.why-us {
+	.why-us-title {
+		padding: 0 0 30px 100px;
+		@include font("Poppins", 36px, regular, $title-color);
+	}
+	.slider {
+		.slick-list {
+			.slick-track {
+				.slider__item {
+					padding: 20px;
+					height: 200px;
+
+					.slider__content {
+						width: 100%;
+						height: 100%;
+						@include position(space-evenly, flex-start, "");
+						.content-image {
+							height: 100%;
+							width: 35%;
+							background-color: #c0c0c0;
+							@include position(center, center, "");
+						}
+						.content-description {
+							height: 100%;
+							width: 35%;
+							.description-title {
+								letter-spacing: 2px;
+								margin: 0 0 15px 0;
+								text-transform: uppercase;
+								@include font("Poppins", 24px, 200, #ff6262);
+							}
+							.description-text {
+								max-height: 80%;
+								overflow: auto;
+								@include font("Inter", 20px, 300, #000);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.slider-controls {
+		transform: translateY(-50%);
+		@include position(center, center, "");
+		.slider-btn {
+			border: none;
+			background-color: $button-color;
+			transition: $buttonTransition;
+			width: 30px;
+			height: 30px;
+			margin: 0 20px 0 0;
+			padding: 5px;
+			@include position(center, center, "");
+			&:hover {
+				cursor: pointer;
+				background-color: rgba($button-color, 0.9);
+				transform: scale(1.1);
+			}
+			img {
+				width: 20px;
+			}
+		}
+	}
+}
 </style>
+

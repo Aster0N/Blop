@@ -1,5 +1,6 @@
 <template>
 	<div id="unregistered-user-page" class="user-page-ur">
+		<div class="menu-cursor-pc" id="cursor"></div>
 		<main-header></main-header>
 		<div class="user-page-info-ur">
 			<div class="info-ur">
@@ -48,7 +49,6 @@
 				</span>
 			</router-link>
 		</div>
-		<div class="menu-cursor-pc" id="cursor"></div>
 	</div>
 </template>
 
@@ -69,8 +69,7 @@ export default {
 		const startBtn = document.getElementById("getStartedBtn");
 		const startBtnArrow = document.getElementById("btn-arrow");
 		const cursorAnimElem = document.querySelectorAll(".cursor_anim"); // from MainHeader:
-		mouseCursor.style.display = "none";
-		// turn on animation
+
 		function animateCursor(e, element) {
 			if (e.target == element) {
 				if (
@@ -85,25 +84,32 @@ export default {
 				}
 			}
 		}
-		// turn off animation
+
 		function offAnimationCursor() {
 			mouseCursor.classList.remove("cursorActiveColor", "cursor-filter");
 		}
 		function animateArrow() {
 			startBtnArrow.style.cssText = `
-        right: 100px;
-        transform: scale(1.4);
-      `;
+        		right: 100px;
+        		transform: scale(1.4);
+     		 `;
 		}
 		function offAnimationArrow() {
 			startBtnArrow.style.cssText = `
-        right: 130px;
-        transform: scale(1.0);
-      `;
+        		right: 130px;
+        		transform: scale(1.0);
+     		 `;
 		}
 
 		function cursor(e) {
-			mouseCursor.style.display = "inline";
+			if (
+				e.pageX >= window.innerWidth - 10 ||
+				e.pageY >= window.innerHeight - 10
+			) {
+				mouseCursor.classList.add("cursor_leave");
+			} else {
+				mouseCursor.classList.remove("cursor_leave");
+			}
 			mouseCursor.style.top =
 				e.pageY - mouseCursor.offsetHeight * 0.8 + "px";
 			mouseCursor.style.left =
@@ -139,17 +145,19 @@ export default {
 	position: absolute;
 	height: 15px;
 	width: 15px;
-	transition: border, transform 0.2s cubic-bezier(0.59, -0.67, 0.6, 1.67);
-	transform-origin: center;
 	border-radius: 50%;
 	border: 2px solid #052730;
+	transition: border, transform 0.2s cubic-bezier(0.59, -0.67, 0.6, 1.67);
+	transform: translate(30%, 30%);
+	transform-origin: center;
 	background-color: transparent;
 	pointer-events: none;
-	transform: translate(-20%, -20%);
+	user-select: none;
 	z-index: 999;
-	@include position(center, center, "");
 }
-
+.menu-cursor-pc.cursor_leave {
+	display: none;
+}
 .menu-cursor-pc.cursor-filter {
 	backdrop-filter: hue-rotate(120deg);
 }
@@ -179,6 +187,7 @@ export default {
 		display: block;
 		position: relative;
 		border: none;
+		cursor: none;
 		max-width: 250px;
 		padding: 25px 125px;
 		background-color: rgba($primary-color, 0.4);
@@ -188,10 +197,10 @@ export default {
 		text-align: center;
 		@include font("Jost", 30px, 800, #fff);
 
-		&,
 		&:hover {
 			cursor: none;
 			background-color: rgba($primary-color, 0.5);
+			transform: translateY(-5px);
 		}
 
 		.btn-arrow-ur {

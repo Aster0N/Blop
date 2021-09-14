@@ -4,7 +4,6 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import router from './router/router'
 
-
 import './assets/scss/styles.scss'
 import './assets/scss/fonts.scss'
 import 'normalize.css'

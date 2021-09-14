@@ -33,70 +33,45 @@
 </template>
 
 <script>
+import $ from "jquery";
 export default {
 	data() {
-		return {
-			speed_coef: 0.05,
-			// horCoeff: 410,
-			horCoeff: 490,
-		};
-	},
-	methods: {
-		screenOnResize() {
-			console.log(this.horCoeff);
-			if (window.innerWidth <= 1820) {
-				// TODO responsive menu
-				("");
-			}
-		},
-	},
-	created() {
-		window.addEventListener("resize", this.screenOnResize);
+		return {};
 	},
 	mounted() {
-		const menuBody = document.querySelector("#menu_body");
-		const menuList = document.querySelector("#menu_list-items");
-		const menuItems = document.querySelectorAll("#menu_item");
-		const speedCoef = this.speed_coef;
-		const horizontalCoeff = this.horCoeff;
-		let positionX = 0;
-		let coordXprocent = 0;
+		$(function () {
+			const $bl = $(".menu-wrapper"),
+				$th = $(".menu-list"),
+				blW = $bl.outerWidth(),
+				blSW = $bl.prop("scrollWidth"),
+				wDiff = blSW / blW - 1,
+				mPadd = 60,
+				damp = 20;
 
-		function setMenuMoveAnimation() {
-			let menuListWidth = 0;
-			menuItems.forEach((elem) => {
-				menuListWidth += elem.offsetWidth;
-			});
+			let posX = 0,
+				mX2 = 0,
+				mmAA = blW - mPadd * 2,
+				mmAAr = blW / mmAA,
+				itv = null;
 
-			const menuWidthDifferent = menuListWidth - menuBody.offsetWidth;
-			const distX = Math.floor(coordXprocent - positionX);
+			const anim = () => {
+				posX += (mX2 - posX) / damp;
+				$th.css({
+					transform: `translateX(${-posX * wDiff}px)`,
+				});
+			};
 
-			positionX += distX * speedCoef;
-			let position = (menuWidthDifferent / horizontalCoeff) * positionX;
-
-			menuList.style.cssText = `transform: translate3d(${-position}px, 0, 0);`;
-
-			if (Math.abs(distX) > 0) {
-				requestAnimationFrame(setMenuMoveAnimation);
-			} else {
-				menuBody.classList.remove("_init");
-			}
-		}
-
-		menuBody.addEventListener("mousemove", (e) => {
-			const menuWidth = menuBody.offsetWidth;
-			const coordX = e.pageX - menuWidth / 100;
-
-			coordXprocent = (coordX / menuWidth) * (window.innerWidth / 3.5);
-
-			if (!menuBody.classList.contains("_init")) {
-				requestAnimationFrame(setMenuMoveAnimation);
-				menuBody.classList.add("_init");
-			}
+			$bl.on("mousemove", function (e) {
+				const mouseX = e.pageX - $(this).prop("offsetLeft");
+				mX2 = Math.min(Math.max(0, mouseX - mPadd), mmAA) * mmAAr;
+			})
+				.on("mouseenter", function () {
+					itv = setInterval(anim, 4);
+				})
+				.on("mouseleave", function () {
+					clearInterval(itv);
+				});
 		});
-	},
-	destroyed() {
-		window.removeEventListener("resize", this.screenOnResize);
 	},
 };
 </script>
@@ -111,33 +86,41 @@ export default {
 	width: 100%;
 	height: 100%;
 	@include position("", center, "");
-	// TODO: responsible .menu-wrapper (lower width)
 
 	.menu-list {
 		box-sizing: border-box;
-		margin: 0 100px 0;
 		@include position(space-evenly, center, "");
 		list-style: none;
 		padding: 0;
+		height: 100%;
 
 		.list-item {
-			height: 200px;
-			transition: transform 0.2s;
+			height: 100%;
 			@include position(center, center, "");
+			transition: background-color 0.4s ease, transform 0.4s ease;
+			&:hover {
+				background-color: #cde8f4;
+				transform: translateY(-20px);
+			}
+			&:hover .list-link {
+				color: #000;
+			}
 		}
 		.list-link {
 			@include position(center, center, "");
 			width: 100%;
 			height: 100%;
 			padding: 0 200px;
-			@include font("Poppins", 6em, 900, transparent);
 			-webkit-text-stroke: 2px #000;
 			text-decoration: none;
 			white-space: nowrap;
+			transition: all 0.5s ease;
+			@include font("Poppins", 6em, 900, transparent);
 			@media screen and (max-width: 1820px) {
 				padding: 0 100px;
 			}
 		}
 	}
 }
+
 </style>

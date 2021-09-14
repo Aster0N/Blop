@@ -66,16 +66,6 @@ export default new VueRouter({
                     component: ContactasPage,
                 },
                 {
-                    path: 'faq',
-                    name: 'faq',
-                    component: FaqPage,
-                },
-                {
-                    path: 'rent-details',
-                    name: 'rent-details',
-                    component: RentDetails,
-                },
-                {
                     path: 'become-premium',
                     name: 'become-premium',
                     component: BecomePremium,
@@ -86,6 +76,16 @@ export default new VueRouter({
                     component: OurPartners,
                 },
             ]
+        },
+        {
+            path: '/faq',
+            name: 'faq',
+            component: FaqPage,
+        },
+        {
+            path: '/rent-details',
+            name: 'rent-details',
+            component: RentDetails,
         },
         // 404 page
         // {
