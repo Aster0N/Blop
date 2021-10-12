@@ -1,7 +1,7 @@
 <template>
 	<div class="page company-page">
 		<div class="company-page-wrapper">
-			<div class="company-title">Our company</div>
+			<div class="company-title _page-title">Our company</div>
 
 			<div class="company-info">
 				<div class="info-text">
@@ -267,10 +267,7 @@ export default {
 		@include position("", "", column);
 
 		.company-title {
-			box-sizing: border-box;
-			@include font("Poppins", 72px, 700, #000);
-			padding: 0 40px;
-			margin: 0 0 30px 0;
+			padding: 40px;
 		}
 
 		.company-info {
@@ -431,28 +428,6 @@ export default {
 						}
 					}
 				}
-			}
-		}
-	}
-	.slider-controls {
-		transform: translateY(-50%);
-		@include position(center, center, "");
-		.slider-btn {
-			border: none;
-			background-color: $button-color;
-			transition: $buttonTransition;
-			width: 30px;
-			height: 30px;
-			margin: 0 20px 0 0;
-			padding: 5px;
-			@include position(center, center, "");
-			&:hover {
-				cursor: pointer;
-				background-color: rgba($button-color, 0.9);
-				transform: scale(1.1);
-			}
-			img {
-				width: 20px;
 			}
 		}
 	}

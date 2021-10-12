@@ -1,4 +1,33 @@
 ._container {
-    width: 1240px;
+    width: calc(100vw - 200px);
     margin: 0 auto;
+}
+._page-title {
+    @include font("Poppins", 72px, 700, #000);
+    box-sizing: border-box;
+    padding: 40px 0;
+}
+
+.slider-controls {
+    transform: translateY(-50%);
+    @include position(center, center, "");
+    .slider-btn {
+        z-index: 10;
+        border: none;
+        background-color: $button-color;
+        transition: $buttonTransition;
+        width: 30px;
+        height: 30px;
+        margin: 0 20px 0 0;
+        padding: 5px;
+        @include position(center, center, "");
+        &:hover {
+            cursor: pointer;
+            background-color: #2c4a58;
+            transform: scale(1.1);
+        }
+        img {
+            width: 20px;
+        }
+    }
 }
