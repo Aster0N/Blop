@@ -179,6 +179,7 @@
 import Popup from "../components/CompanyPagePopup.vue";
 import $ from "jquery";
 import "../assets/js/slick.min.js";
+import setGrab from "../assets/js/slider-grab.js";
 
 export default {
 	components: {
@@ -208,7 +209,7 @@ export default {
 			mobileFirst: false,
 			easing: "ease",
 			autoplaySpeed: 4000,
-			touchThreeshold: 3, // for mobile
+			touchThreeshold: 3,
 		});
 		$(".slider-prev-btn").click(function () {
 			$(".slider").slick("slickPrev");
@@ -229,21 +230,7 @@ export default {
 			padding: 50px;
 			background-color: #FFFBF4;
 		`;
-		slickTrack.style.cssText = `
-			display: flex;
-		`;
-		slickTrack.addEventListener("mouseenter", () => {
-			document.body.style.cursor = "grab";
-		});
-		slickTrack.addEventListener("mouseleave", () => {
-			document.body.style.cursor = "default";
-		});
-		slickTrack.addEventListener("mousedown", () => {
-			document.body.style.cursor = "grabbing";
-		});
-		slickTrack.addEventListener("mouseup", () => {
-			document.body.style.cursor = "grab";
-		});
+		setGrab(slickTrack);
 		slickArrows.forEach((el) => {
 			el.style.cssText = `
 				font-size: 0;
